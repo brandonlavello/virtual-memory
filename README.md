@@ -2,5 +2,7 @@
 virtual-memory
 
 Brandon Lavello
-Jon Torres
+Jonathan Torres
 Hyun Woo Kim
+
+
