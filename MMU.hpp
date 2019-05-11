@@ -19,13 +19,25 @@ class MMU{
     public:
         MMU();
         void readAddress(int);  //read address into address obj
+
+        //SETTERS
+            //IncrementerS
+        void incrementPageCount();
+        void incrementPageFault();
+        void incrementTLBCount();
+        void incrementTLBFault();
+
+        //GETTERS
+        // void getPageCount();
+        // void getPageFault();
+        // void getTLBCount();
+        // void getTLBFault();
         
-        void pageCount();
-        void pageFault();
-        void TLBCount();
-        void TLBFault();
         void pageFaultRATE();
         void TLBFaultRATE();
+
+        //return the value of private _address
+        Address getAddress();
 
 
         /*
