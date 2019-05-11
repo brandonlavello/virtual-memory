@@ -1,10 +1,10 @@
 //VMM.cpp
-#include "VMM.h"
+#include "VMM.hpp"
 
 VMM::VMM () {
 
-}
+};
 
-void VMM::readInt() {
-
-}
+void VMM::readInput(uint32_t addr) {
+    mmu.readAddress(addr);
+};

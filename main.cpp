@@ -1,16 +1,12 @@
 //# virtual-memory
-
-// **********************
-// 
-// **********************
-
 //main.cpp
 
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <iomanip>
-#include "MMU.h"
+#include "MMU.hpp"
+#include "VMM.hpp"
 
 using namespace std;
 
@@ -18,18 +14,13 @@ int main () {
     cout << "Begin" << std::endl;
     
     //array of 1000 addresses
-    int addresses[1000];
+    uint32_t addresses[1000];
+    VMM vmm;
 
     //iterate over addresses, read then in from standard input
     for(int i = 0; i < 1000 ; i++) {
         cin >> addresses[i];
-
-        //create new MMU
-        //MemoryManagementUnit mmu;
-        //mmu.readAddress(addresses[i]);
-
-        //std::cout << addresses[i] << std::endl;
-        //cout << hex << setw(4) << setfill('0') << uppercase << addresses[i] << endl;
+        vmm.readInput(addresses[i]);
     }
 
     return 0;

@@ -1,52 +1,52 @@
 //# virtual-memory
+#include "MMU.hpp"
 
-#include "MMU.h"
 #include <iostream>
 using namespace std;
-/*
- MemoryManagementUnit();
 
-        void readAddress(int);
-        void pageCount();
-        void pageFault();
-        void TLBCount();
-        void TLBFault();
-        void pageFaultRATE();
-        void TLBFAULTRATE();
- int page_access_count;
-        int page_in_faults;
-        int tlb_access_count;
-        int tlb_faults;
-*/
-MemoryManagementUnit::MemoryManagementUnit() { // constructor to make it default zero
-    page_access_count = 0;
-    page_in_faults = 0;
-    tlb_access_count = 0;
-    tlb_faults = 0;
+MMU::MMU() { // constructor to make it default zero
+    _page_access_count = 0;
+    _page_in_faults = 0;
+    _tlb_access_count = 0;
+    _tlb_faults = 0;
 };
 
-void MemoryManagementUnit::readAddress(int address) { // read address to output first 8 bit into page and last 8 bit to fault
+// read address and store in address obj 
+//to output first 8 bit into page and last 8 bit to fault
+void MMU::readAddress(int addr) { 
     int offset;
     int pageNum;
 
-    pageNum = (address & 0xFFFF) >> 8;
+    pageNum = (addr & 0xFFFF) >> 8;
     cout << "pageNum: " << pageNum << endl;
 
-    offset = address & 0xFF; 
+    offset = addr & 0xFF; 
     cout << "offset: " << offset <<endl;
+
+    _address.setPage(pageNum);
+    _address.setDisplacement(offset);
+    _address.setAddress(addr);
+
 };
-void MemoryManagementUnit::pageCount(){
-    page_access_count++;
+void MMU::pageCount(){
+    _page_access_count++;
 }
-void MemoryManagementUnit::pageFault(){
-    page_in_faults++;
+void MMU::pageFault(){
+    _page_in_faults++;
 }
-void MemoryManagementUnit::TLBCount(){
-    tlb_access_count++;
+void MMU::TLBCount(){
+    _tlb_access_count++;
 }
-void MemoryManagementUnit::TLBFault(){
-    tlb_faults++;
+void MMU::TLBFault(){
+    _tlb_faults++;
 }
-void MemoryManagementUnit::pageFaultRATE(){
-    
+void MMU::pageFaultRATE(){
+    cout << endl << endl;
+    double pageFaultRate = (_page_in_faults / ((double)(_page_access_count + (double)_page_in_faults))* 100;
+    cout << "Page Fault Rate: " << pageFaultRate << " in percentage.." << endl;
+}
+void MMU::TLBFaultRATE(){
+    cout << endl << endl;
+    double hits = (1 - (_tlb_faults / (double)_tlb_access_count)) * 100;
+    cout << "TLB Hit Rate: " << hits << " in percentage.." << endl;
 }
