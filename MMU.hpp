@@ -33,8 +33,8 @@ class MMU{
         // void getTLBCount();
         // void getTLBFault();
         
-        void pageFaultRATE();
-        void TLBFaultRATE();
+        double getPageFaultRate();
+        double getTLBFaultRate();
 
         //return the value of private _address
         Address getAddress();

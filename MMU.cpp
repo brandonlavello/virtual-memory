@@ -28,6 +28,10 @@ void MMU::readAddress(int addr) {
     _address.setAddress(addr);
 
 };
+Address MMU::getAddress()
+{
+    return _address;
+}
 void MMU::incrementPageCount(){
     _page_access_count++;
 }
@@ -40,16 +44,9 @@ void MMU::incrementTLBCount(){
 void MMU::incrementTLBFault(){
     _tlb_faults++;
 }
-void MMU::pageFaultRATE(){
-    cout << endl << endl;
-    double pageFaultRate = (_page_in_faults / ((double)(_page_access_count + (double)_page_in_faults))* 100);
-    cout << "Page Fault Rate: " << pageFaultRate << " in percentage.." << endl;
+double MMU::getPageFaultRate() {
+    return double(_page_in_faults / ((double)(_page_access_count + (double)_page_in_faults)) * 100);
 }
-void MMU::TLBFaultRATE(){
-    cout << endl << endl;
-    double hits = (1 - (_tlb_faults / (double)_tlb_access_count)) * 100;
-    cout << "TLB Hit Rate: " << hits << " in percentage.." << endl;
-}
-Address MMU::getAddress(){
-    return _address;
+double MMU::getTLBFaultRate() {
+    return double(1 - (_tlb_faults / (double)_tlb_access_count)) * 100;
 }

@@ -19,7 +19,7 @@ MMU mmu;
 uint32_t pageNumber;
 
 int main () {
-    cout << "Begin" << std::endl;
+    cout << "\n*** BEGIN PROGRAM ***\n\n" << std::endl;
 
     //iterate over addresses
     for(int i = 0; i < 1000 ; i++) {
@@ -52,10 +52,19 @@ int main () {
         //mmu -> Ram -> read in data - print out
         //update TLB
     } //end for loop
+    
 
-    //print TLB_FAULT RATE
-    //print PAGE_ACCESS_FAULT RATE
 
+    //Program Completed - Print out Statistics
+    cout << "\n\n*** PROGRAM COMPLETED ***\n\n" << "Program Statistics:\n\n";
+
+    //print Page Fault Rate
+    cout << "\tPage Fault Rate: " << mmu.getPageFaultRate() << endl;
+
+    //print TLB Fault Rate - do not expect to have a high TLB hit rate
+    cout << "\tPage Fault Rate: " << mmu.getTLBFaultRate() << endl;
+
+    cout << "\n*** ENDING PROGRAM ***\n\n";
     return 0;
 }
  
