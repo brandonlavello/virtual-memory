@@ -18,10 +18,9 @@ void MMU::readAddress(int addr) {
     int pageNum;
 
     pageNum = (addr & 0xFFFF) >> 8;
-    cout << "pageNum: " << pageNum << endl;
-
+    //cout << "pageNum: " << pageNum << endl;
     offset = addr & 0xFF; 
-    cout << "offset: " << offset <<endl;
+    //cout << "offset: " << offset <<endl;
 
     _address.setPage(pageNum);
     _address.setDisplacement(offset);

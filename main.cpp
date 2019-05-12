@@ -27,6 +27,12 @@ int main () {
         cin >> addresses[i];
         mmu.readAddress(addresses[i]);
 
+        //print out Logical Address
+        cout << "Logical Address: " << setfill('0') << setw(sizeof(int)) << uppercase << hex << addresses[i];
+
+        //print out translated physical address (probably have to move this down)
+        cout << "\t->" << "   (physical address)" << endl;
+
         //Get Page - Update page_access_count? not sure.
         mmu.getAddress().getPage();
         
@@ -51,6 +57,7 @@ int main () {
         //Print out data from the frame number
         //mmu -> Ram -> read in data - print out
         //update TLB
+
     } //end for loop
     
 
@@ -64,7 +71,7 @@ int main () {
     //print TLB Fault Rate - do not expect to have a high TLB hit rate
     cout << "\tPage Fault Rate: " << mmu.getTLBFaultRate() << endl;
 
-    cout << "\n*** ENDING PROGRAM ***\n\n";
+    cout << "\n\n*** ENDING PROGRAM ***\n\n";
     return 0;
 }
  
