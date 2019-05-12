@@ -16,7 +16,8 @@ const int TLB_SIZE = 16;
 struct TLBInitial{
     uint32_t frameNum;
     uint32_t pageNum;
-}
+};
+
 class TLB {
     public:
         TLB();
