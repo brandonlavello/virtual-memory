@@ -1,4 +1,8 @@
 //# virtual-memory
+/*
+Description:
+    This class takes care of the binary folder BACKING_STORE.bin
+*/
 #include <iostream>
 #include <fstream>
 #include "RAM.hpp"
@@ -15,8 +19,8 @@ class BS{
 
     public:
         BS(); // default construc
-        char* reading(int);
-      //  ~BS(); 
+        ~BS(); // destructor
+        char* read(uint32_t pageNumber);
 };
 
 #endif

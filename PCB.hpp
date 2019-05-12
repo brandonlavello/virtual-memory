@@ -1,4 +1,9 @@
 //# virtual-memory
+/*
+Description:
+    This class takes drived class from Address.hpp and gets the frame, entry,
+    and populate page table
+*/
 #include <iostream>
 using namespace std;
 
@@ -8,48 +13,29 @@ using namespace std;
 // constant value numbers
 #define PAGE_TABLE_SIZE 256
 #define PAGE_SIZE 256
+
 // Borrowing a header from...
 #include "Address.hpp"
-/*
-struct PageTableEntry{    // erase this::  PageTableEntry
-    int frameNumber = 0;
-    int getFrameNum() {
-        return frameNumber;
-    }
+
+// ProcessControlBlock
+struct PCB {
+    //uint32_t getFrame(uint32_t frameNumber); // get frame number in int datatype
+    //PageTableEntry getEntry(uint32_t pageNumber);
+    PageTableEntry pageTable[PAGE_TABLE_SIZE];
+        
 };
 
-struct PCB {        // ProcessControlBlock
-    public:
-        int getFrame(int); // get frame number in int datatype
-        PageTableEntry getEntry(int);
 
-    private:
-        PageTableEntry pTE[PAGE_TABLE_SIZE];
-};
-
-*/
-
+//PAGE TABLE ENTRY
 struct PageTableEntry{
-    uint32_t frameNum =0;
-    bool isValid = false;
-    void addingPageEntry(uint32_t frame){
-        frameNum = frame;
-        isValid = true;
-    }
-    uint32_t getFframeNum(){
-        return frameNum;
-    }
-    bool checkValidation(){
-        return isValid;
-    }
+    uint32_t frameNumber = 0;
+    bool valid = false;
+
+    //void addingPageEntry(uint32_t frame);
+    // uint32_t getFrameNumber();
+    // bool checkValidation();
 };
-class PCB{
-    private:
-        PCB pageTable[PAGE_TABLE_SIZE];
-    public:
-        void updatePageTable(uint32_t pageNum, uint32_t frameNum);
-        void
-};
+
 #endif
 
 //Read page table

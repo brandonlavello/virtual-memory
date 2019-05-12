@@ -1,5 +1,10 @@
 //# virtual-memory
 //MMU.hpp
+/*
+Description:
+    This class holds the counts offf page access, tlb access count, page fault, and tlb fault.
+    It also calculates the hit rate and page fault rate
+*/
 #include "Address.hpp"
 
 #ifndef MMU_HPP
@@ -38,26 +43,7 @@ class MMU{
 
         //return the value of private _address
         Address getAddress();
-
-
-        /*
-        void clearTLB();
-        MemoryMangementUnit& instance();
-        MemoryMangementUnit() // need to ffix this
-        MemoryMangementUnit&(something here) operaotr=();
-        pageAccesses();
-        pageFaults()
-        void read<T>();
-        tlbAccesses();
-        tlbFaults();
-
-        struct PageFault{
-            PageFault();
-            Word pageNumber_;
-        }
-*/
     
 };
-
 
 #endif

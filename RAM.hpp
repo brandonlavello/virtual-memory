@@ -1,6 +1,9 @@
 //# virtual-memory
 //TLB.h
-
+/*
+Description:
+    Ram class takes care off the physical memory that stores raze size and frame size.
+*/
 #ifndef RAM_HPP
 #define RAM_HPP
 // constant  pre defined number

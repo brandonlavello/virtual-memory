@@ -2,10 +2,10 @@
 //main.cpp
 
 #include <iostream>
-#include <fstream>
-#include <string>
 #include <iomanip>
 #include "MMU.hpp"
+#include "TLB.hpp"
+//#include "PCB.hpp"
 
 using namespace std;
 
@@ -13,13 +13,19 @@ using namespace std;
 
 //array of 1000 addresses
 int addresses[1000];
+
 MMU mmu;
+TLB *tlb;
+//PCB pcb;
 
 //page number
-uint32_t pageNumber;
+int pageNumber;
+int physicalAddress;
 
 int main () {
     cout << "\n*** BEGIN PROGRAM ***\n\n" << std::endl;
+    
+    tlb = new TLB();
 
     //iterate over addresses
     for(int i = 0; i < 1000 ; i++) {
@@ -29,43 +35,48 @@ int main () {
 
         //print out Logical Address
         cout << "Logical Address: " << setfill('0') << setw(sizeof(int)) << uppercase << hex << addresses[i];
-
-        //print out translated physical address (probably have to move this down)
-        cout << "\t->" << "   (physical address)";
-
-
-
+        
         //Get Page - Update page_access_count? not sure.
-        mmu.getAddress().getPage();
+        pageNumber = mmu.getAddress().getPage();
         
     //ACCESS TLB
-        mmu.incrementTLBCount(); //increment _tlb_access_count
-        
-        //check TLB for hit with pageNum
+        mmu.incrementTLBCount();  //increment _tlb_access_count
+
+        if (tlb->checkTLB(pageNumber)) { //check TLB for hit with pageNum
         //if hit in TLB
-            //Print out data from the frame number 
+            //Print out data from the frame number
             //mmu -> Ram -> read in data - print out
             //update TLB
-
-        //else not hit 
+        } else {
+        //else not hit
             //increment tlb fault
+            mmu.incrementTLBFault();
+
             //check pcb valid-invalid bit using Page Number
+            //if(pcb.pageTable[pageNumber].valid) 
+
             //check page fault
+            
             //if page fault handle page fault
 
-        //increment _page_access_count
-        //mmu.incrementPageCount(); <- correct, just uncomment when ready
+
+            cout << "ELSE" << endl;
+        }
+
+        mmu.incrementPageCount();    //increment _page_access_count
 
         //Print out data from the frame number
         //mmu -> Ram -> read in data - print out
         //update TLB
 
-        //print out translated physical address (probably have to move this down)
+
+
+        //print out translated physical address
+        //pageNumber * 256 + offset
+        cout << "\tphysical";
         cout << "\t\tValue: " << "(Value of address)" << endl;
 
     } //end for loop
-    
-
 
     //Program Completed - Print out Statistics
     cout << "\n\n*** PROGRAM COMPLETED ***\n\n" << "Program Statistics:\n\n";
@@ -74,9 +85,13 @@ int main () {
     cout << "\tPage Fault Rate: " << mmu.getPageFaultRate() << endl;
 
     //print TLB Fault Rate - do not expect to have a high TLB hit rate
-    cout << "\tPage Fault Rate: " << mmu.getTLBFaultRate() << endl;
+    cout << "\tTLB Fault Rate: " << mmu.getTLBFaultRate() << endl;
 
     cout << "\n\n*** ENDING PROGRAM ***\n\n";
+
+    //destroy tlb
+    delete tlb;
+
     return 0;
 }
  

@@ -1,4 +1,8 @@
 //# virtual-memory
+/*
+Description:
+    This class gets the address, displacement(offset) and page
+*/
 #include <iostream>
 
 #ifndef ADDRESS_HPP
