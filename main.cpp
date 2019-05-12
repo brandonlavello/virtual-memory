@@ -31,7 +31,9 @@ int main () {
         cout << "Logical Address: " << setfill('0') << setw(sizeof(int)) << uppercase << hex << addresses[i];
 
         //print out translated physical address (probably have to move this down)
-        cout << "\t->" << "   (physical address)" << endl;
+        cout << "\t->" << "   (physical address)";
+
+
 
         //Get Page - Update page_access_count? not sure.
         mmu.getAddress().getPage();
@@ -57,6 +59,9 @@ int main () {
         //Print out data from the frame number
         //mmu -> Ram -> read in data - print out
         //update TLB
+
+        //print out translated physical address (probably have to move this down)
+        cout << "\t\tValue: " << "(Value of address)" << endl;
 
     } //end for loop
     
