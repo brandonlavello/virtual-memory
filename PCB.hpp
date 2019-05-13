@@ -7,6 +7,9 @@ Description:
 #include <iostream>
 using namespace std;
 
+// Borrowing a header from...
+#include "Address.hpp"
+
 #ifndef PCB_HPP
 #define PCB_HPP
 
@@ -14,27 +17,22 @@ using namespace std;
 #define PAGE_TABLE_SIZE 256
 #define PAGE_SIZE 256
 
-// Borrowing a header from...
-#include "Address.hpp"
+//PAGE TABLE ENTRY
+struct PageTableEntry
+{
+    uint32_t frameNumber = 0;
+    bool valid = false;
+
+    void setPage(uint32_t frame);
+};
 
 // ProcessControlBlock
 struct PCB {
     //uint32_t getFrame(uint32_t frameNumber); // get frame number in int datatype
     //PageTableEntry getEntry(uint32_t pageNumber);
-    PageTableEntry pageTable[PAGE_TABLE_SIZE];
-        
+    PageTableEntry pageTable[PAGE_TABLE_SIZE];  
 };
 
-
-//PAGE TABLE ENTRY
-struct PageTableEntry{
-    uint32_t frameNumber = 0;
-    bool valid = false;
-
-    //void addingPageEntry(uint32_t frame);
-    // uint32_t getFrameNumber();
-    // bool checkValidation();
-};
 
 #endif
 

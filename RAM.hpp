@@ -4,25 +4,35 @@
 Description:
     Ram class takes care off the physical memory that stores raze size and frame size.
 */
+
+#include <iostream>
+
 #ifndef RAM_HPP
 #define RAM_HPP
-// constant  pre defined number
+
+// constant pre defined number
 #define FRAME_SIZE 256
 #define RAM_SIZE 256
 
-//CODE HERE
-class RAM{
-    private:
-        char physicalMem[RAM_SIZE][FRAME_SIZE];
-        Dirty frame[RAM_SIZE];
-    public:
-        void store(int, char*); // constructor that takes itn and char param
-        int getRunningTime(int); //
+//Status
+struct Status
+{
+    bool accessed, dirty = false;
+    uint32_t time = 0;
 };
 
-//
-struct Dirty {
-    int dirtyTime = 0; // used to implement algorithm
+class RAM {
+    public:
+        RAM();
+        void store(uint32_t, char *); // constructor that takes itn and char param
+        char read(uint32_t frameNumber, uint32_t displacement);
+        int getRunningTime(int);
+        
+    private:
+        char physicalMemory[RAM_SIZE][FRAME_SIZE];
+        Status status[RAM_SIZE];
+
+    
 };
 
 #endif

@@ -1,23 +1,21 @@
 //# virtual-memory
 
 #include "TLB.hpp"
+#include "RAM.hpp"
+#include <iostream>
 
 TLB::TLB() {
-        for (int i = 0; i < TLB_SIZE; i++) {
-            if (i > TLB_SIZE - 1){
-                tlb[i][0] = -1;
-                tlb[i][1] = -1;
-            } else {
-                tlb[i][0] = i;
-                tlb[i][1] = TLB_SIZE - i;
-            }
+        for (uint32_t i = 0; i < TLB_SIZE; i++) {
+            tlb[i][0] = i;
+            tlb[i][1] = 0;
+            //std::cout << "tlb[i][0]: " << tlb[i][0];
+            //std::cout << "\ttlb[i][1]: " << tlb[i][1] << std::endl;
         }
         tlbHit = 0;
 };
 
 bool TLB::checkTLB(uint32_t pageTableNumber) {
-    for (int i = 0; i < TLB_SIZE; i++)
-    {
+    for (uint32_t i = 0; i < TLB_SIZE; i++) {
         if (tlb[i][0] == pageTableNumber) {
             tlbHit = true;
             std::cout << "\n\t\tTLB HIT\t";
@@ -26,6 +24,16 @@ bool TLB::checkTLB(uint32_t pageTableNumber) {
     }
     return tlbHit;
 } 
+
+uint32_t TLB::getFrame(uint32_t pageTableNumber) {
+    for (uint32_t i = 0; i < TLB_SIZE; i++)
+    {
+        if (tlb[i][0] == pageTableNumber) {
+            return tlb[i][0];
+        }
+    }
+    return 0;
+}
 
 /*
  void pushing(uint32_t temp);
@@ -42,7 +50,9 @@ void TLB::pushing(uint32_t temp){
 
 uint32_t TLB::popping(){
     while(!imQueue.pop() == NULL){
+        uint32_t victim = imQueue.front();
         imQueue.pop();
+        return victim;
     }
 }
 

@@ -4,19 +4,18 @@
 // definitions fomr PCB.hpp files
 
 
-// PROCESS CONTROL BLOCK
-PageTableEntry PCB::getEntry(uint32_t pageNumber){
-    return pageTable[pageNumber];
-}
+// // PROCESS CONTROL BLOCK
+// PageTableEntry PCB::getEntry(uint32_t pageNumber){
+//     return pageTable[pageNumber];
+// }
 
-uint32_t PCB::getFrame(uint32_t frameNumber){
-    return pageTable[frameNumber].frameNumber; 
-}
+// uint32_t PCB::getFrame(uint32_t frameNumber){
+//     return pageTable[frameNumber].frameNumber; 
+// }
 
 
 //PAGE TABLE ENTRY
-
-void PageTableEntry::addingPageEntry(uint32_t frame) {
+void PageTableEntry::setPage(uint32_t frame) {
     frameNumber = frame;
     valid = true;
 };
