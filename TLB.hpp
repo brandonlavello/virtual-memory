@@ -1,7 +1,6 @@
 //# virtual-memory
 //TLB.h
 /*
-Description:
     TLB class checks if the tlb hit and validates.
 */
 #include <iostream>

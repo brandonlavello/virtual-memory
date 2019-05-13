@@ -1,6 +1,5 @@
 //# virtual-memory
 /*
-Description:
     This class takes drived class from Address.hpp and gets the frame, entry,
     and populate page table
 */
@@ -33,10 +32,5 @@ struct PCB {
     PageTableEntry pageTable[PAGE_TABLE_SIZE];  
 };
 
-
 #endif
 
-//Read page table
-//If nothing there, go to backing store
-//load backing store into Page Table 
-//page fault = page table has no data -> go into backing store -> store

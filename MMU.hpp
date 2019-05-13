@@ -1,7 +1,6 @@
 //# virtual-memory
 //MMU.hpp
 /*
-Description:
     This class holds the counts offf page access, tlb access count, page fault, and tlb fault.
     It also calculates the hit rate and page fault rate
 */

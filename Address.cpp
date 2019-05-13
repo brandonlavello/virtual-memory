@@ -1,6 +1,7 @@
 //# virtual-memory
 #include "Address.hpp"
 
+//Address constructor initialzies to default values
 Address::Address () {
         _address = 0;
         _displacement = 0;

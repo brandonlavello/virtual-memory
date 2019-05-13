@@ -5,7 +5,9 @@
 RAM::RAM(){
 
 }
-void RAM::store(uint32_t frameNumber, char *frame){
+
+void RAM::store(uint32_t frameNumber, char * frame)
+{
     for(int i=0; i< FRAME_SIZE; i++){
         physicalMemory[frameNumber][i] = frame[i];
     }

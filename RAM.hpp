@@ -24,7 +24,9 @@ struct Status
 class RAM {
     public:
         RAM();
-        void store(uint32_t, char *); // constructor that takes itn and char param
+        //store value
+        void store(uint32_t frameNumber, char * frame); 
+        //read value 
         char read(uint32_t frameNumber, uint32_t displacement);
         int getRunningTime(int);
         
